@@ -1,0 +1,30 @@
+﻿@page
+@model Univer.Pages.Faculties.DetailsModel
+
+@{
+    ViewData["Title"] = "Информация о факультете";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Информация о факультете</h1>
+
+<div>
+    <h4>Исходные данные</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            Наименование факультета:
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Faculty.FacultyName)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin123@gmail.com")
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Faculty.FacultyId">Изменить</a>
+        <span>|</span>
+    }    
+    <a asp-page="./Index">Вернуться к списку факультетов</a>
+</div>

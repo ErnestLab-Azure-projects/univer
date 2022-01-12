@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Univer.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav font-weight-bold">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a style="color: yellow" class="nav-link font-italic" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" style="color: yellow" class="nav-link btn btn-link font-weight-bold">Выйти</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a style="color: yellow" class="nav-link" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+        </li>
+        <li class="nav-item">
+            <a style="color: yellow" class="nav-link" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+        </li>
+    }
+</ul>

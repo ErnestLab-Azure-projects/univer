@@ -1,0 +1,29 @@
+﻿@page
+@model Univer.Pages.Groups.DeleteModel
+
+@{
+    ViewData["Title"] = "Удаление группы";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление группы</h1>
+
+<h3>Вы подтверждаете удаление данной группы?</h3>
+<div>
+    <h4>Исходные данные</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            Наименование группы:
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Group.GroupName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Group.GroupId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-page="./Index">Вернуться к списку групп</a>
+    </form>
+</div>

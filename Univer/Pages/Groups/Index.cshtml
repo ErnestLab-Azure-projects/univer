@@ -1,0 +1,43 @@
+﻿@page
+@model Univer.Pages.Groups.IndexModel
+
+@{
+    ViewData["Title"] = "Список групп";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Список групп</h1>
+
+<p>
+    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin123@gmail.com")
+    {
+        <a asp-page="Create">Добавить группу</a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Наименование группы
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Group) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupName)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin123@gmail.com")
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.GroupId">Изменить</a>
+                    <a asp-page="./Delete" asp-route-id="@item.GroupId">Удалить</a>
+                }
+                <a asp-page="./Details" asp-route-id="@item.GroupId">Подробности</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

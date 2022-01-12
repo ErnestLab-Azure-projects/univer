@@ -1,0 +1,45 @@
+﻿@page
+@model Univer.Pages.Faculties.IndexModel
+
+@{
+    ViewData["Title"] = "Факультеты";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Факультеты</h1>
+
+<p>
+    @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin123@gmail.com")
+    {
+        <a asp-page="Create">Добавить факультет</a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="color: blue" class="text-center">
+                Наименование факультета
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Faculty) {
+        <tr>
+            <td style="color: blue">                
+                @Html.DisplayFor(modelItem => item.FacultyName)
+            </td>
+            <td class="text-center">
+                @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin123@gmail.com")
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.FacultyId">Изменить</a>
+                    <span>|</span>
+                    <a asp-page="./Delete" asp-route-id="@item.FacultyId">Удалить</a>
+                    <span>|</span>
+                }
+                <a asp-page="./Details" asp-route-id="@item.FacultyId">Подробности</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

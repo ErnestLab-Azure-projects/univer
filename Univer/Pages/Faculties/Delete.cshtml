@@ -1,0 +1,29 @@
+﻿@page
+@model Univer.Pages.Faculties.DeleteModel
+
+@{
+    ViewData["Title"] = "Удаление факультета";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление факультета</h1>
+
+<h3>Вы подтверждаете удаление данного факультета</h3>
+<div>
+    <h4>Исходные данные</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            Наименование факультета:
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Faculty.FacultyName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Faculty.FacultyId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-page="./Index">Вернуться к списку факультетов</a>
+    </form>
+</div>
